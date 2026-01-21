@@ -1,60 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CDS Hub - Community Defense & Safety</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      max-width: 600px;
-      animation: fadeIn 1s ease-in;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #fff, #a8edea);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    p { font-size: 1.2rem; margin: 1rem 0; opacity: 0.9; }
-    .badge {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 25px;
-      margin: 0.5rem;
-      font-size: 0.9rem;
-    }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes glow { from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); } to { filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDS Hub - Community Defense & Safety</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover { opacity: 0.7; }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .badge {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card p { opacity: 0.9; line-height: 1.6; }
+        
+        .emergency {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid rgba(255, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .emergency h2 { margin-bottom: 1rem; }
+        
+        .emergency-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+        
+        .button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav ul { flex-direction: column; gap: 1rem; }
+            .header-content { flex-direction: column; gap: 1rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🛡️ CDS Hub</h1>
-    <p>Community Defense & Safety resources and information hub</p>
-    <p>Integrating with Nextdoor Sidenode Community Safety Advocacy</p>
-    <div class="badge">🚀 Deployed on Cloudflare Pages</div>
-    <div class="badge">🔒 Secure</div>
-    <div class="badge">⚡ Fast</div>
-  </div>
+    <header>
+        <div class="header-content">
+            <div class="logo">🛡️ CDS Hub</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#emergency">Emergency</a></li>
+                    <li><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="home" class="hero">
+        <h1>🛡️ CDS Hub</h1>
+        <p class="subtitle">Community Defense & Safety resources and information hub<br>
+        Integrating with Nextdoor Sidenode Community Safety Advocacy</p>
+        
+        <div class="badges">
+            <div class="badge">🚀 Deployed on Cloudflare Pages</div>
+            <div class="badge">🔒 Secure</div>
+            <div class="badge">⚡ Fast</div>
+        </div>
+    </section>
+    
+    <section id="emergency" class="section">
+        <div class="emergency">
+            <h2>🚨 Emergency Contacts</h2>
+            <div class="emergency-number">911</div>
+            <p>For immediate life-threatening emergencies</p>
+            <div style="margin-top: 2rem;">
+                <a href="tel:911" class="button">Call Emergency Services</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="resources" class="section">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Safety Resources</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>🚓 Local Police</h3>
+                <p>Non-emergency police services, crime reporting, and community safety programs.</p>
+                <a href="tel:311" class="button">Call 311</a>
+            </div>
+            
+            <div class="card">
+                <h3>🚑 Medical Resources</h3>
+                <p>Healthcare services, urgent care centers, and mental health support.</p>
+                <a href="#" class="button">Find Care</a>
+            </div>
+            
+            <div class="card">
+                <h3>🏘️ Neighborhood Watch</h3>
+                <p>Connect with local neighborhood watch programs and community safety initiatives.</p>
+                <a href="#" class="button">Join Program</a>
+            </div>
+            
+            <div class="card">
+                <h3>📱 Safety Apps</h3>
+                <p>Download recommended safety applications for your mobile device.</p>
+                <a href="#" class="button">Get Apps</a>
+            </div>
+            
+            <div class="card">
+                <h3>🔦 Emergency Preparedness</h3>
+                <p>Guides and checklists for emergency situations and disaster preparedness.</p>
+                <a href="#" class="button">View Guides</a>
+            </div>
+            
+            <div class="card">
+                <h3>🤝 Community Support</h3>
+                <p>Local support groups, counseling services, and community assistance programs.</p>
+                <a href="#" class="button">Find Support</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="community" class="section">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Community Engagement</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>💬 Nextdoor Integration</h3>
+                <p>Connect with your neighbors and stay informed about local safety issues through Nextdoor Sidenode Community Safety Advocacy.</p>
+                <a href="https://nextdoor.com" target="_blank" class="button">Visit Nextdoor</a>
+            </div>
+            
+            <div class="card">
+                <h3>📅 Safety Meetings</h3>
+                <p>Attend community safety meetings and workshops to stay informed and engaged.</p>
+                <a href="#" class="button">View Calendar</a>
+            </div>
+            
+            <div class="card">
+                <h3>📢 Report Issues</h3>
+                <p>Report safety concerns, suspicious activity, or community issues to local authorities.</p>
+                <a href="#" class="button">Submit Report</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2026 CDS Hub - Community Defense & Safety</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">Integrating with Nextdoor Sidenode Community Safety Advocacy</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">🚀 Powered by Cloudflare Pages</p>
+    </footer>
 </body>
 </html>
