@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDS Hub - Community Defense & Safety</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      max-width: 600px;
+      animation: fadeIn 1s ease-in;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #a8edea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    p { font-size: 1.2rem; margin: 1rem 0; opacity: 0.9; }
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      margin: 0.5rem;
+      font-size: 0.9rem;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glow { from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); } to { filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛡️ CDS Hub</h1>
+    <p>Community Defense & Safety resources and information hub</p>
+    <p>Integrating with Nextdoor Sidenode Community Safety Advocacy</p>
+    <div class="badge">🚀 Deployed on Cloudflare Pages</div>
+    <div class="badge">🔒 Secure</div>
+    <div class="badge">⚡ Fast</div>
+  </div>
+</body>
+</html>
